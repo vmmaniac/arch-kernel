@@ -8,6 +8,8 @@ readonly PATCHES_DIR="${SCRIPT_DIR}/patches"
 readonly BUILD_DIR="${SCRIPT_DIR}/build"
 readonly LINUX_DIR="${BUILD_DIR}/linux"
 readonly PACKAGE_DIR="${BUILD_DIR}/package"
+echo "keyserver keys.openpgp.org" > ~/.gnupg/gpg.conf
+gpg --recv-key 3B94A80E50A477C7
 
 function _apply_config() {
   echo "Applying custom config..."
@@ -63,8 +65,6 @@ function apply_patches() {
 }
 
 function build() {
-  echo "keyserver keys.openpgp.org" > ~/.gnupg/gpg.conf
-  gpg --recv-key 3B94A80E50A477C7
   cd "${PACKAGE_DIR}"
   makepkg -s
   cd ..
