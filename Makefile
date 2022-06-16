@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := default
 PACKAGE_NAME := "linux-vmmaniac"
-PACKAGE_RELEASE_NUMBER := "14.6"
+PACKAGE_RELEASE_NUMBER := "69.666"
 
 clean:
 	rm -r build/
