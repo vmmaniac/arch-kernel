@@ -8,8 +8,6 @@ readonly PATCHES_DIR="${SCRIPT_DIR}/patches"
 readonly BUILD_DIR="${SCRIPT_DIR}/build"
 readonly LINUX_DIR="${BUILD_DIR}/linux"
 readonly PACKAGE_DIR="${BUILD_DIR}/package"
-echo "keyserver keys.openpgp.org" > ~/.gnupg/gpg.conf
-gpg --recv-key 3B94A80E50A477C7
 
 function _apply_config() {
   echo "Applying custom config..."
@@ -31,6 +29,9 @@ function _set_version() {
 }
 
 function get_linux_package() {
+  gpg --recv-key 38DBBDC86092693E
+  echo "keyserver keys.openpgp.org" > ~/.gnupg/gpg.conf
+  gpg --recv-key 3B94A80E50A477C7
   if [[ -d "${LINUX_DIR}" ]]; then
     echo "Fetching linux kernel repository..."
     cd "${LINUX_DIR}"
