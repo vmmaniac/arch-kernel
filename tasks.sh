@@ -29,15 +29,15 @@ function _set_version() {
 }
 
 function get_linux_package() {
-  gpg --recv-key 38DBBDC86092693E
-  echo "keyserver keys.openpgp.org" > ~/.gnupg/gpg.conf
-  gpg --recv-key 3B94A80E50A477C7
   if [[ -d "${LINUX_DIR}" ]]; then
     echo "Fetching linux kernel repository..."
     cd "${LINUX_DIR}"
     git pull
     cd ..
   else
+    gpg --recv-key 38DBBDC86092693E
+    echo "keyserver keys.openpgp.org" > ~/.gnupg/gpg.conf
+    gpg --recv-key 3B94A80E50A477C7
     echo "Cloning linux kernel repository..."
     git clone https://github.com/archlinux/svntogit-packages --branch packages/linux --single-branch "${LINUX_DIR}"
   fi
